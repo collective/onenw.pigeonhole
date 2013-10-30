@@ -1,0 +1,23 @@
+<dl class="portlet portletRelated portletRelatedItem"
+    tal:attributes="class string:portlet portletRelated portletRelatedItem ${view/css_class}">
+
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <span tal:content="view/getPortletHeader">Overheard...</span>
+        <span class="portletTopRight"></span>
+    </dt>
+
+    <dd class="portletItem"
+        tal:define="item view/getRelatedItem">
+        <div tal:content="structure item/getText|item/Description|nothing">
+            [Rich body (or description) of the item]
+        </div>
+    </dd>
+
+    <dd class="portletFooter">
+        <span class="portletBottomLeft"></span>
+        <span class="portletBottomRight"></span>
+    </dd>
+
+</dl>

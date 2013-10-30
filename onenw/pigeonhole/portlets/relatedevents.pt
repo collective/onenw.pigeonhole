@@ -1,0 +1,27 @@
+<dl class="portlet portletRelated portletRelatedEvents"
+    tal:attributes="class string:portlet portletRelated portletRelatedEvents ${view/css_class}"
+    tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime">
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <span tal:content="view/getPortletHeader">Related Events</span>
+        <span class="portletTopRight"></span>
+    </dt>
+
+    <tal:loop repeat="event view/getEvents">
+    <dd class="portletItem">
+        <a tal:attributes="href event/getURL;
+                           title event/Description">
+            <span class="event-date"
+                  tal:content="python:toLocalizedTime(event.start)">[Start Date]</span>:
+            <span class="event-title" tal:content="event/Title">[Event Item Title]</span>
+        </a>
+    </dd>
+    </tal:loop>
+
+    <dd class="portletFooter">
+        <span class="portletBottomLeft"></span>
+        <span class="portletBottomRight"></span>
+    </dd>
+
+</dl>

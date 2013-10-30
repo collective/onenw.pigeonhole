@@ -1,0 +1,46 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone">
+
+    <!-- Ensure Plone's portlets ZCML has already been processed; without
+         this, we may get a permission lookup error
+      -->
+    <include package="plone.app.portlets" />
+
+    <plone:portlet
+        name="onenw.pigeonhole.RelatedNews"
+        interface=".relatednews.IRelatedNewsPortlet"
+        assignment=".relatednews.Assignment"
+        renderer=".relatednews.Renderer"
+        addview=".relatednews.AddForm"
+        editview=".relatednews.EditForm"
+        />
+
+    <plone:portlet
+        name="onenw.pigeonhole.RelatedEvents"
+        interface=".relatedevents.IRelatedEventsPortlet"
+        assignment=".relatedevents.Assignment"
+        renderer=".relatedevents.Renderer"
+        addview=".relatedevents.AddForm"
+        editview=".relatedevents.EditForm"
+        />
+
+    <plone:portlet
+        name="onenw.pigeonhole.RelatedContent"
+        interface=".relatedcontent.IRelatedContentPortlet"
+        assignment=".relatedcontent.Assignment"
+        renderer=".relatedcontent.Renderer"
+        addview=".relatedcontent.AddForm"
+        editview=".relatedcontent.EditForm"
+        />
+
+    <plone:portlet
+        name="onenw.pigeonhole.RelatedItem"
+        interface=".relateditem.IRelatedItemPortlet"
+        assignment=".relateditem.Assignment"
+        renderer=".relateditem.Renderer"
+        addview=".relateditem.AddForm"
+        editview=".relateditem.EditForm"
+        />
+
+</configure>

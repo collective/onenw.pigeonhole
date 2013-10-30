@@ -1,0 +1,25 @@
+<dl class="portlet portletRelated portletRelatedContent"
+    tal:attributes="class string:portlet portletRelated portletRelatedContent ${view/css_class}">
+
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <span tal:content="view/getPortletHeader">Also See...</span>
+        <span class="portletTopRight"></span>
+    </dt>
+
+    <tal:loop repeat="brain view/getRelatedContent">
+    <dd class="portletItem">
+        <a tal:attributes="href python:brain.getRemoteUrl or brain.getURL();
+                           title brain/Description">
+            <span class="related-title" tal:content="brain/Title">[Item Title]</span>
+        </a>
+    </dd>
+    </tal:loop>
+
+    <dd class="portletFooter">
+        <span class="portletBottomLeft"></span>
+        <span class="portletBottomRight"></span>
+    </dd>
+
+</dl>

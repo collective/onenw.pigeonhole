@@ -1,0 +1,57 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser">
+
+    <browser:page
+          for="*"
+          name="phawareness_view"
+          class=".phawarenessview.PHAwarenessView"
+          permission="zope2.View"
+          allowed_interface="..interfaces.IPHAwarenessView"
+          />
+
+    <browser:page
+          for="*"
+          name="keywordmigrator"
+          class=".keywordmigrator.KeywordMigrator"
+          permission="cmf.ManagePortal"
+          allowed_interface="..interfaces.IKeywordMigrator"
+          />
+
+    <browser:page
+          for="*"
+          name="orphans"
+          class=".orphans.Orphans"
+          permission="cmf.ManagePortal"
+          allowed_interface="..interfaces.IOrphans"
+          />
+
+    <browser:page
+          for="*"
+          name="keyword_migrator"
+          permission="cmf.ManagePortal"
+          template="keywordmigrator.pt"
+          />
+
+    <browser:resource
+        name="unconfigured-ph-content.css"
+        image="unconfigured-ph-content.css"
+        />
+
+    <!-- Register the control panel configlet -->
+    
+    <browser:resource
+        name="pigeonhole_icon.gif"
+        image="pigeonhole_icon.gif"
+        />
+    
+    <browser:page
+        name="pigeonhole-controlpanel"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".configlet.PigeonholeCP"
+        permission="cmf.ManagePortal"
+        />
+
+    <adapter factory=".configlet.PigeonholeCPAdapter" />
+
+
+</configure>

@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+<head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border',1)" />
+</head>
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main"
+        tal:define="view context/@@keywordmigrator;
+                    keywords view/getKeywords">
+
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+        <h1 class="documentFirstHeading">Pigeonhole Keyword Migrator</h1>
+
+        <p class="discreet">Use this form to change Pigeonhole keywords.  This will
+            make sure that any content in your site that has been assigned any of the keywords
+            that you'd like to change gets updated.  Be sure to use the main Pigeonhole 
+            configuration panel for creating and deleting keywords only!
+        </p>
+
+        <div tal:replace="structure provider:plone.abovecontentbody" />
+
+        <form tal:condition="keywords"
+              action="@@keywordmigrator/migrateKeywords"
+              method="POST">
+
+            <tal:field_loop repeat="field keywords">
+                <div tal:repeat="option field/options">
+                    <b tal:content="string:${field/field_name}:">[PH Field Name]:</b>
+                    <span tal:content="option">[Old option name]</span>
+                    <input type="hidden"
+                           name="keywords.field_id:records"
+                           tal:attributes="value field/field_id" />
+                    <input type="hidden"
+                           name="keywords.old_option:records"
+                           tal:attributes="value option" />
+                    <input type="text"
+                           name="keywords.new_option:records" />
+                </div>
+            </tal:field_loop>
+
+            <input type="submit" />
+
+        </form>
+        <div tal:replace="structure provider:plone.belowcontentbody" />
+
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>
+

@@ -1,0 +1,9 @@
+Issues
+[-] look into portlet availability errors in console: IN TRACKER NOW
+[X] make existing PH settings persist through reinstalls (purge="False" in prop sheet!)
+[ ] abstract the number of PH fields out to a constant
+
+Think about
+[ ] reinstall issue flagged (XXX) in Extensions/Install.py
+[ ] should we reindex the PH aware content types after fields are en/disabled in the configlet?
+[ ] should we remove the portlet assignments upon uninstall?

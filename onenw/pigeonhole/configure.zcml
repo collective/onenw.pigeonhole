@@ -1,0 +1,47 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="onenw.pigeonhole">
+
+    <five:registerPackage package="." initialize=".initialize" />
+    
+    <genericsetup:registerProfile
+       name="default"
+       title="Pigeonhole"
+       directory="profiles/default"
+       description="Pigeonhole tags things"
+       provides="Products.GenericSetup.interfaces.EXTENSION"
+       />
+
+    <include package="archetypes.schemaextender" />
+    <include package=".browser" />
+    <include package=".portlets" />
+
+    <!-- event subscriber -->
+    <subscriber handler=".pigeonholizer.markNewContentObject" />
+    
+    <!-- vocab stuff -->
+    <utility
+        component=".vocabularies.ActiveFieldsVocabularyFactory"
+        name="onenw.pigeonhole.vocabularies.ActiveFieldsVocabularyFactory"
+        />
+
+    <utility
+        component=".vocabularies.PigeonholeTypesVocabularyFactory"
+        name="onenw.pigeonhole.vocabularies.PigeonholeTypesVocabularyFactory"
+        />
+
+    <!-- custom indexers (Plone 3.3+ only) -->
+    <configure zcml:condition="installed z3c.autoinclude">
+      <adapter factory=".catalog.ph_field_1_indexer" name="ph_field_1" />
+      <adapter factory=".catalog.ph_field_2_indexer" name="ph_field_2" />
+      <adapter factory=".catalog.ph_field_3_indexer" name="ph_field_3" />
+      <adapter factory=".catalog.ph_field_4_indexer" name="ph_field_4" />
+      <adapter factory=".catalog.is_relatable_indexer" name="is_relatable" />
+      <adapter factory=".catalog.is_ph_configured_indexer" name="is_ph_configured" />
+    </configure>
+
+</configure>

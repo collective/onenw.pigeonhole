@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- This file is used to register new types of portlets. It can also
+     be used to register completely new column types. See CMFPlone's version
+     of this file for more information.
+  -->
+<portlets>
+
+    <portlet
+       addview="onenw.pigeonhole.RelatedNews"
+       title="Related News"
+       description="This portlet displays recent news that are considered 'related' to the current page."
+       />
+
+    <portlet
+       addview="onenw.pigeonhole.RelatedEvents"
+       title="Related Events"
+       description="This portlet displays upcoming events that are considered 'related' to the current page."
+       />
+
+    <portlet
+       addview="onenw.pigeonhole.RelatedContent"
+       title="Related Content"
+       description="This portlet displays a list of content from the site that is considered 'related' to the current page.  It sorts them by their 'Effective Date' (more or less the date they were published)."
+       />
+
+    <portlet
+       addview="onenw.pigeonhole.RelatedItem"
+       title="Related Item"
+       description="This portlet displays the body of a single item from the site that is considered 'related' to the current page."
+       />
+
+</portlets>

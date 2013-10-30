@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<componentregistry>
+    
+    <adapters>
+        <adapter name="ph_adapter"
+                 factory="onenw.pigeonhole.phschemaextender.PHSchemaExtender"
+                 for_="onenw.pigeonhole.interfaces.IPigeonholeAware"
+                 provides="archetypes.schemaextender.interfaces.ISchemaExtender" />
+    </adapters>
+
+    <utilities>
+        <utility
+            interface="onenw.pigeonhole.interfaces.IPigeonholizer"
+            factory="onenw.pigeonhole.pigeonholizer.Pigeonholizer"
+            permission="cmf.ManagePortal" />
+    </utilities>
+    
+</componentregistry>

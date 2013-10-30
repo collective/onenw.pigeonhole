@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<action-icons>
+ <action-icon category="controlpanel"
+              action_id="pigeonhole"
+              title="Pigeonhole Settings"
+              priority="0" icon_expr="++resource++pigeonhole_icon.gif"/>
+</action-icons>

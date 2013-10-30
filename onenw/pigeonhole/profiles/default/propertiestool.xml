@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<object name="portal_properties" meta_type="Plone Properties Tool">
+ <object name="pigeonhole" meta_type="Pigeonhole Property Sheet">
+  <property name="title" type="string" purge="False">Pigeonhole Settings.  **NEVER EDIT THESE VALUES DIRECTLY**</property>
+  <property name="ph_aware_types"  type="lines" purge="False"></property>
+  <property name="ph_field_name_1" type="string" purge="False">Audience</property>
+  <property name="ph_field_name_2" type="string" purge="False">Program Area</property>
+  <property name="ph_field_name_3" type="string" purge="False">Pigeonhole Field 3</property>
+  <property name="ph_field_name_4" type="string" purge="False">Pigeonhole Field 4</property>
+  <property name="ph_field_values_1" type="lines" purge="False" />
+  <property name="ph_field_values_2" type="lines" purge="False" />
+  <property name="ph_field_values_3" type="lines" purge="False" />
+  <property name="ph_field_values_4" type="lines" purge="False" />
+  <property name="ph_field_visible_1" type="boolean" purge="False">True</property>
+  <property name="ph_field_visible_2" type="boolean" purge="False">True</property>
+  <property name="ph_field_visible_3" type="boolean" purge="False">False</property>
+  <property name="ph_field_visible_4" type="boolean" purge="False">False</property>
+  <property name="ph_field_description_1" type="text" purge="False">To which groups is this page designed to resonate most?</property>
+  <property name="ph_field_description_2" type="text" purge="False">Which internal program areas are most relevant here?</property>
+  <property name="ph_field_description_3" type="text" purge="False" />
+  <property name="ph_field_description_4" type="text" purge="False" />
+ </object>
+</object>

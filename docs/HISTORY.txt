@@ -1,0 +1,9 @@
+Changelog for onenw.pigeonhole
+
+    (name of developer listed in brackets)
+
+onenw.pigeonhole - 0.1 Unreleased
+
+    - Initial package structure.
+      [zopeskel]
+

@@ -1,0 +1,27 @@
+<dl class="portlet portletRelated portletRelatedNews"
+    tal:attributes="class string:portlet portletRelated portletRelatedNews ${view/css_class}"
+    tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime">
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <span tal:content="view/getPortletHeader">Related News</span>
+        <span class="portletTopRight"></span>
+    </dt>
+
+    <tal:loop repeat="news view/getNews">
+    <dd class="portletItem">
+        <a tal:attributes="href news/getURL;
+                           title news/Description">
+            <span class="news-date"
+                  tal:content="python:toLocalizedTime(news.EffectiveDate)">[Eff Date]</span>:
+            <span class="news-title" tal:content="news/Title">[News Item Title]</span>
+        </a>
+    </dd>
+    </tal:loop>
+
+    <dd class="portletFooter">
+        <span class="portletBottomLeft"></span>
+        <span class="portletBottomRight"></span>
+    </dd>
+
+</dl>
