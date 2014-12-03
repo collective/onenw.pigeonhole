@@ -8,6 +8,7 @@ from Products.statusmessages.interfaces import IStatusMessage
 from onenw.pigeonhole.interfaces import IKeywordMigrator
 from onenw.pigeonhole.browser.configlet import PigeonholeCPAdapter
 
+
 class KeywordMigrator(BrowserView):
     """Provides view methods for migrating PH keywords -- both settings
     and existing content"""
@@ -23,11 +24,11 @@ class KeywordMigrator(BrowserView):
         portal = portal_url.getPortalObject()
         ctl = PigeonholeCPAdapter(portal)
         results = []
-        for x in range(1,5):
+        for x in range(1, 5):
             is_visible = getattr(ctl, 'get_ph_field_visible_%s' % x)
             if is_visible():
                 getField_name = getattr(ctl, 'get_ph_field_name_%s' % x)
-                getValues     = getattr(ctl, 'get_ph_field_values_%s' % x)
+                getValues = getattr(ctl, 'get_ph_field_values_%s' % x)
                 options = getValues()
                 if options:
                     results.append({'field_id': 'ph_field_%s' % x,
@@ -47,7 +48,7 @@ class KeywordMigrator(BrowserView):
            ({'field_id': 'ph_field_1', 'old_option': 'NASCAR Dads', 'new_option': 'NASCAR Parents',},
             {'field_id': 'ph_field_1', 'old_option': 'Soccer Moms', 'new_option': 'Soccer Parents',},
             {'field_id': 'ph_field_2', 'old_option': 'Willamette Valley', 'new_option': 'Western Oregon',},)
-            
+
             XXX: Note that at the moment, we're assuming that for any single PH field,
             there won't be more than 26 keyword options available.  More than that would
             require using a different pick widget in the edit form as well as some
@@ -62,7 +63,7 @@ class KeywordMigrator(BrowserView):
             mapping = getattr(self.request, 'keywords', None)
             if mapping is None:
                 return
-        
+
         changed_objects = 0
         changed_options = 0
         for value in mapping:
@@ -76,7 +77,7 @@ class KeywordMigrator(BrowserView):
                 # Step 1: migrate content objects
                 ph_field = index = value['field_id']
                 field_number = ph_field[-1]
-                query = {index:old_option}
+                query = {index: old_option}
                 for brain in catalog(**query):
                     obj = brain.getObject()
                     field = obj.Schema().get(ph_field)
@@ -86,11 +87,11 @@ class KeywordMigrator(BrowserView):
                     field.getMutator(obj)(vals)
                     obj.reindexObject()
                     changed_objects += 1
-                
+
                 # Step 2: reset options, but preserve the order
                 options = getattr(ctl, 'get_ph_field_values_%s' % field_number)()
                 if isinstance(options, str):
-                    options = [options,]
+                    options = [options, ]
                 else:
                     options = list(options)
                 options[options.index(old_option)] = new_option
