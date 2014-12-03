@@ -94,7 +94,12 @@ class KeywordMigrator(BrowserView):
                     options = [options, ]
                 else:
                     options = list(options)
-                options[options.index(old_option)] = new_option
+                if new_option not in options:
+                    # Put the new option in place of the old
+                    options[options.index(old_option)] = new_option
+                else:
+                    # Just remove any and all occurrences of the old option
+                    options = [o for o in options if o != old_option]
                 getattr(ctl, 'set_ph_field_values_%s' % field_number)(options)
                 changed_options += 1
         feedback = "Changed %s keywords, touching, at the very most, %s pieces of content (some of them may have been touched more than once)" % (changed_options,

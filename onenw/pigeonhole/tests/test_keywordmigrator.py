@@ -65,6 +65,27 @@ class TestKeywordMigrator(FunctionalTestCase):
         self.failUnless(options1 == ('Fisherpeople', 'Fisherwomen'))
         self.failUnless(options2 == ('Fishes',))
 
+    def test_migrateKeywords_does_not_duplicate_existing_options(self):
+        ctl_panel = PigeonholeCPAdapter(self.portal)
+        catalog = self.portal.portal_catalog
+        # We want to just make all existing Fishermen into Fisherwomen, a
+        # keyword that already exists:
+        mapping = (
+            {'field_id': 'ph_field_1',
+             'old_option': 'Fishermen',
+             'new_option': 'Fisherwomen',
+            },
+        )
+        view = self.portal.restrictedTraverse('keywordmigrator')
+        view.migrateKeywords(mapping=mapping)
+        self.assertEqual(0, len(catalog(ph_field_1='Fishermen')))
+        self.assertEqual(3, len(catalog(ph_field_1='Fisherwomen')))
+
+        options1 = ctl_panel.get_ph_field_values_1()
+        # Verify we removed the old option
+        self.assertEqual(('Fisherwomen', ), options1)
+
+
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()
